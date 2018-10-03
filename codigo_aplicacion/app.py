@@ -27,8 +27,9 @@ Herramientas Utilizadas:
 #-------------------------------------------------------------------#
 #-----------------------Bilbiotecas Utilizadas----------------------#
 #-------------------------------------------------------------------#
-import tkinter as tk
+import tkinter
 from tkinter import *
+from tkinter import messagebox
 import pymongo
 import os
 
@@ -61,7 +62,7 @@ def ventanaConsultas():
     ventanaPrincipal.withdraw()
     ventanaConsultas = Toplevel()
     ventanaConsultas.title("Consultas a MovieDB")
-    ventanaConsultas.minsize(1000,600)
+    ventanaConsultas.minsize(800,500)
     ventanaConsultas.resizable(width=NO,height=NO)
 
     # Imagen de Fondo Ventana Consultas #
@@ -74,12 +75,60 @@ def ventanaConsultas():
     contenedorConsultas.place(x=0,y=0)
 
     # Titulo Consultas #
-    tituloConsultas = Label(ventanaConsultas,text="Consultas", fg="#FFFFFF", bg ="#000000", font=("Courier",40))
-    tituloConsultas.place(x=270,y=25)
+    tituloConsultas = Label(ventanaConsultas,text="Ejecute sus Consultas", fg="#FFFFFF", bg ="#000000", font=("Courier",40))
+    tituloConsultas.place(x=150,y=25)
 
-    # Opciones de Consulta #
-    infoPeliculaNombre = Label(ventanaConsultas,text="-> Consultar pelicula por nombre", fg="#FFFFFF", bg ="#000000", font=("Courier",16))
+    #----Opciones de Consulta----#
+
+    #--Consultar Pelicula por Nombre--#
+    infoPeliculaNombre = Label(ventanaConsultas,text="-> Consultar película por nombre: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
     infoPeliculaNombre.place(x=25,y=100)
+    entradaNombre = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
+    entradaNombre.place(x=400,y=100)
+
+    def mostrar():
+        messagebox.showinfo("Mensaje leido en el entry",str(entradaNombre.get()))
+        print ("Mensaje leido:"+entradaNombre.get())
+        
+    botonConsultaNombre = Button(ventanaConsultas, command=mostrar, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaNombre.place(x=570,y=100)
+    
+
+    #--Consultar Pelicula por Franquicia--#
+    infoPeliculaFranquicia = Label(ventanaConsultas,text="-> Consultar película por franquicia: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    infoPeliculaFranquicia.place(x=25,y=150)
+    entradaFranquicia = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
+    entradaFranquicia.place(x=440,y=150)
+    botonConsultaFranquicia = Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaFranquicia.place(x=570,y=150)
+
+    #--Consultar Pelicula por Franquicia--#
+    infoPeliculaAhnos = Label(ventanaConsultas,text="-> Consultar película por año: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    infoPeliculaAhnos.place(x=25,y=200)
+    entradaAhnos1 = Entry(ventanaConsultas, width=5, bg = "#FFFFFF")
+    entradaAhnos1.place(x=370,y=200)
+    entradaAhnos2 = Entry(ventanaConsultas, width=5, bg = "#FFFFFF")
+    entradaAhnos2.place(x=440,y=200)
+    botonConsultaAhno= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaAhno.place(x=570,y=200)
+
+    #--Consultar Pelicula por Compañía--#
+    infoPeliculaCompania = Label(ventanaConsultas,text="-> Consultar película por compañía: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    infoPeliculaCompania.place(x=25,y=250)
+    entradaCompania = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
+    entradaCompania.place(x=430,y=250)
+    botonConsultaCompania= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaCompania.place(x=570,y=250)
+
+    #--Consultar Duracion Peliculas--#
+    infoPeliculaDuracion = Label(ventanaConsultas,text="-> Consultar información de la duración ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    infoPeliculaDuracion.place(x=25,y=300)
+    botonConsultaDuracion= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaDuracion.place(x=570,y=300)
+
+
+    #----------------------------#
+
 
     # Funcion para regresar a Ventana Principal 
     def regresarVentanaPrincipal():
@@ -88,7 +137,7 @@ def ventanaConsultas():
 
     # Boton para regresar a la Ventana Principal #
     botonReresoVentanaPrincipal = Button(ventanaConsultas, command=regresarVentanaPrincipal, text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
-    botonReresoVentanaPrincipal.place(x=345,y=275)
+    botonReresoVentanaPrincipal.place(x=355,y=400)
 
 
 #-----Ventana Principal-----#
