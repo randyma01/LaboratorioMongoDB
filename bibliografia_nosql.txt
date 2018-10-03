@@ -1,0 +1,18 @@
+Bibliografía:
+
+- http://nosql-database.org/
+- https://aws.amazon.com/es/nosql/
+- https://www.mongodb.com/nosql-explained
+- https://blog.pandorafms.org/es/bases-de-datos-nosql/
+- https://talks.bitexpert.de/phpbnl14-postgres-nosql/#/
+- https://www.slideshare.net/crisgomal8/nosql-databases-32933737
+- https://dzone.com/articles/top-4-nosql-databases
+- http://programmershelper.com/mongodb-insert-document-guideline/
+- http://slashmobility.com/blog/2016/12/nosql-vs-sql-cual-elegir/
+- https://stackoverflow.com/questions/6334048/foreign-keys-in-mongo
+- https://www.youtube.com/watch?v=UFVFIKduXpo
+- https://www.youtube.com/watch?v=erjPomg7F4U
+- https://www.youtube.com/watch?v=-rcvh5aMyW8&list=PLS1QulWo1RIZtR6bncmSaH8fB81oRl6MP&index=9
+- http://arkusnexus.com/2016/09/12/coding-guidelines-mongodb/
+- 
+-  
