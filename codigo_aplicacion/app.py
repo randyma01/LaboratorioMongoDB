@@ -86,11 +86,13 @@ def ventanaConsultas():
     entradaNombre = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
     entradaNombre.place(x=400,y=100)
 
-    def mostrar():
-        messagebox.showinfo("Mensaje leido en el entry",str(entradaNombre.get()))
-        print ("Mensaje leido:"+entradaNombre.get())
+    def ejecutarConsultaNombre():
+        temp = str(entradaNombre.get())
+        print (temp)
+        #messagebox.showinfo("Mensaje leido en el entry",str(entradaNombre.get()))
+        #print ("Mensaje leido:"+entradaNombre.get())
         
-    botonConsultaNombre = Button(ventanaConsultas, command=mostrar, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaNombre = Button(ventanaConsultas, command=ejecutarConsultaNombre, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaNombre.place(x=570,y=100)
     
 
