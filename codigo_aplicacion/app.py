@@ -1,7 +1,7 @@
 """
 ----------------------------------------------------------------------
 
-Area Academica de Administracion de Tecnologia de Informacion
+Área Académica de Administración de Tecnología de Información
 
 Curso:
     Bases de Datos Avanzados
@@ -14,29 +14,36 @@ Fecha:
     Semestre II
 
 Estudiante:
-	Randy Martinez Sandi
+	Randy Martínez Sandí
 
 Carnet: 2014047395
 
-Herramientas Utilizadas:
-    -Python 3.0.7
-    -tkinter
-    -pymongo
+Índice:
+    1. Importación de la librerías utilizadas.
+    2. Declaración de funciones auxiliares de uso global.
+    3. Desarrollo de la interfaz gráfica.
+
+Nota:
+    El siguiente código corresponde únicamente a la parte de la
+    aplicación (UI).
 ----------------------------------------------------------------------
 """
 #-------------------------------------------------------------------#
 #-----------------------Bilbiotecas Utilizadas----------------------#
 #-------------------------------------------------------------------#
+
+# Libreria para la Interfaz Gr[afica #
 import tkinter
 from tkinter import *
 from tkinter import messagebox
-import pymongo
+
+# Librería para utilidades del Sistema Operativo
 import os
 
-#-------------------------------------------------------------------#
-#------------------------Parte de MongoDB---------------------------#
-#-------------------------------------------------------------------#
-
+# Librería de la Conexión y control de la Parte de MongoDB #
+# (este archivo corresponde a la otra parte del laboratrio #
+# y se encuentre en este mismo folder )                    #
+from connection import *
 
 #-------------------------------------------------------------------#
 #----------------------Funciones Auxiliares-------------------------#
