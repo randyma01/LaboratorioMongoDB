@@ -1,27 +1,39 @@
 /*
+----------------------------------------------------------------------
 
-* Escuela de Música:
-	-> Estudiantes (información básica),
-	   para tener un registro de quienes
-	   están inscritos.
+Área Académica de Administración de Tecnología de Información
 
-* Recordatorio de MongoDB NoSQL:
-	-> Base de datos -> Colección -> Documentos
+Curso:
+    Bases de Datos Avanzados
 
-* Guía Generales:
-	(Basado en el artículo:
-		"Naming conventions and style guidelines for MongoDB - ArkusNexus" por Kim Celaya (2016),
-		tomado de la página: http://arkusnexus.com/2016/09/12/coding-guidelines-mongodb/)
+Tarea:
+    Laboratorio MongoDB
 
-	-> Dejar un espacio después de las comas (,).
-	-> No se usa el punto y coma (;).
-	-> Variables deben usar 'lowerCamelCase'.
-	-> Colecciones deben nombrarse en plural.
-	-> Base de datos debe usar camelCase.
-	-> Nombres con camelCase y no deben empezar con _id ni usar $ ya que están reservado.
+Fecha:
+    7 de octubre, 2018
+    Semestre II
+
+Estudiante:
+	Randy Martínez Sandí
+
+Carnet: 2014047395
+
+Índice:
+    1. Creación de la base, colección y documentos.
+    2. Llenado de documento y colecciones.
+    3. Consultas hacia la base.
+
+Nota:
+    El siguiente código corresponde al script de la creación
+		de la base de datos.
+
+----------------------------------------------------------------------
 */
 
-//-------------------------------------------------------------------//
+//--------------------------------------------------------//
+//--------------Creación de la base de datos--------------//
+//--------------------------------------------------------//
+
 // 1. Buscar y usar esta base, si no existe se y se pasa a usarse.
 use escuelaMusica
 

@@ -173,7 +173,15 @@ tituloPrincipal.place(x=285,y=95)
 botonConsultas = Button(ventanaPrincipal, command=ventanaConsultas, text="Consultas", bg = "#000000", fg = "#000000", font=("Courier",30))
 botonConsultas.place(x=315,y=225)
 
+# Boton para ir a Ventana de Insertar #
+botonInsertar = Button(ventanaPrincipal, command=ventanaConsultas, text="Insertar", bg = "#000000", fg = "#000000", font=("Courier",30))
+botonInsertar.place(x=325,y=275)
+
+# Boton para ir a Ventana de Actualizar #
+botonInsertar = Button(ventanaPrincipal, command=ventanaConsultas, text="Actualizar", bg = "#000000", fg = "#000000", font=("Courier",30))
+botonInsertar.place(x=310,y=325)
+
 # Boton para terminar del Programar #
 botonSalida = Button(ventanaPrincipal, command=salida(), text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
-botonSalida.place(x=345,y=275)
+botonSalida.place(x=345,y=475)
 

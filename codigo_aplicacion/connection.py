@@ -41,4 +41,9 @@ import pymongo
 #-------------------------------------------------------------------#
 
 # conexión a la base de datos #
-cliente = pymongo.MongoClient()
+#cliente = pymongo.MongoClient()
+
+# #base de datos movieDB #
+
+
+#-----Consultas-----#
