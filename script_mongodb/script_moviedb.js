@@ -4,7 +4,7 @@
 Área Académica de Administración de Tecnología de Información
 
 Curso:
-    Bases de Datos Avanzados
+    Bases de Datos Avanzados - TI4601
 
 Tarea:
     Laboratorio MongoDB
@@ -19,8 +19,8 @@ Estudiante:
 Carnet: 2014047395
 
 Índice:
-    1. Creación de la base, colección y documentos.
-    2. Llenado de documento y colecciones.
+    1. Creación de la base y colecciones.
+    2. Llenado de las colecciones.
     3. Consultas hacia la base.
 
 Nota:
@@ -34,301 +34,222 @@ Nota:
 //--------------Creación de la base de datos--------------//
 //--------------------------------------------------------//
 
-// 1. Buscar y usar esta base, si no existe se y se pasa a usarse.
-use escuelaMusica
+// Usar esta Base (si no existe se crea) //
+use movieDB
 
-// 2. 'db' muestra cuál base de datos estoy usando.
-db
 
-// 3. 'show dbs' muestra todas las bases de datos que existen y que tengan datos guardados.
-show dbs
+// Crear una Colección //
+db.createCollection('peliculas')
+db.createCollection('productoras')
 
-// 4. Borrar la base datos con todos los datos.
-db.dropDatabase()
-
-// 5. Crear una colección.
-db.createCollection('estudiantes')
-db.profesores.insert({"nombre": "Max"})
-
-// 6. Para ver las colecciones que tengo dentro de la db en la que estoy.
+// Mostrar las Colecciones //
 show collections
 
-// 7. Eliminar una colección.
-db.profesores.drop()
+//--------------------------------------------------------//
+//---------------Llenado de las Colecciones---------------//
+//--------------------------------------------------------//
 
-// 8. Insertando un nuevo documento.
-db.estudiantes.insert(
-	{
-        "numeroEstudiante": "1",
-        "nombre": "Sofía",
-        "apellido": "Cortés",
-        "edad": "21",
-        "instrumento": "Piano",
-        "gustoMusical": "Indie-Pop"
-    }
-)
-
-// 9. Insertando varios documento al mismo tiempo
-db.estudiantes.insert(
+// Insertando Películas //
+db.peliculas.insert(
  [
     {
-        "numeroEstudiante": "2",
-        "nombre": "Sebastián",
-        "apellido": "Valerio",
-        "edad": "19",
-        "instrumento": "Guitarra",
-        "gustoMusical": "Rock"
+        "nombrePelicula": "Quiero Matar a Mi Jefe",
+        "nombreDirector": "Seth Gordon",
+        "genero": "Comedia",
+        "pais": "Estados Unidos",
+        "estreno": 2011,
+        "duracion": 106,
+				"productora": "New Line Cinema",
+				"actores": ["Jason Bateman", "Charlie Day", "Jason Sudeikis"]
     },
 
-    {
-        "numeroEstudiante": "3",
-        "nombre": "Carolina",
-        "apellido": "Villegas",
-        "edad": "20",
-        "instrumento": "Vocales",
-        "gustoMusical": "Alternativo"
+		{
+        "nombrePelicula": "Rogue One: A Star Wars Story",
+        "nombreDirector": "Gareth Edwards",
+        "genero": "Ciencia-Ficcion",
+        "franquicia": "Star Wars",
+        "pais": "Inglaterra",
+        "estreno": 2016,
+        "duracion": 133,
+				"productora": "Lucasfilm",
+				"actores": ["Felicity Jones", "Diego Luna", "Alan Tudyk"]
     },
 
-    {
-        "numeroEstudiante": "4",
-        "nombre": "Giovanni",
-        "apellido": "Rodríguez",
-        "edad": "22",
-        "instrumento": "Batería",
-        "gustoMusical": "Jazz"
+		{
+        "nombrePelicula": "Pulp Fiction",
+        "nombreDirector": "Quentin Tarantino",
+        "genero": "Crimen",
+        "pais": "Estados Unidos",
+        "estreno": 1994,
+        "duracion": 154,
+				"productora": "Miramax",
+				"actores": ["John Travolta", "Uma Thurman", "Samuel L. Jackson"]
     },
 
-    {
-        "numeroEstudiante": "5",
-        "nombre": "Cristhian",
-        "apellido": "Martínez",
-        "edad": "21",
-        "gustoMusical": "Hip-Hop/Rap"
-
+		{
+        "nombrePelicula": "X-Men: First Class",
+        "nombreDirector": "Matthew Vaughn",
+        "genero": "Superheroes",
+				"franquicia": "X-Men",
+        "pais": "Estados Unidos",
+        "estreno": 2011,
+        "duracion": 131,
+				"productora": "Twentieth Century Fox",
+				"actores": ["James McAvoy", "Michael Fassbender", "Jennifer Lawrence"]
     },
 
-    {
-        "numeroEstudiante": "6",
-        "nombre": "Bruno",
-        "apellido": "Milano",
-        "edad": "20"
+		{
+        "nombrePelicula": "La Era de Hielo",
+        "nombreDirector": "Chris Wedge",
+        "genero": "Animada",
+				"franquicia": "Ice-Age",
+        "pais": "Estados Unidos",
+        "estreno": 2002,
+        "duracion": 81,
+				"productora": "Twentieth Century Fox",
+				"actores": ["Denis Leary", "John Leguizamo", "Ray Romano"]
     },
 
-    {
-        "numeroEstudiante": "7",
-        "nombre": "Felipe",
-        "apellido": "Moya",
-        "edad": "19",
-        "instrumento": "EquipoDJ",
-        "gustoMusical": "House",
-        "artistaFavorito": "The Chainsmokers"
+		{
+        "nombrePelicula": "Rapidos y Furioso: Reto Tokyo",
+        "nombreDirector": "Justin Lin",
+        "genero": "Accion",
+				"franquicia": "Rapidos y Furiosos",
+        "pais": "Japon",
+        "estreno": 2006,
+        "duracion": 104,
+				"productora": "Universal Pictures",
+				"actores": ["Lucas Black", "Zachery Ty Bryan", "Shad Moss"]
     },
 
-    {
-        "numeroEstudiante": "8",
-        "nombre": "Jorge",
-        "apellido": "Vargas",
-        "edad": "21",
-        "instrumento": ["Guitarra","Batería","Bajo"],
-        "gustoMusical": "Progresivo",
-        "nombreBanda": "Cuerda Floja"
+		{
+        "nombrePelicula": "Kung Pow: El maestro de la kung fusión",
+        "nombreDirector": "Steve Oedekerk",
+        "genero": "Parodia",
+        "pais": "Estados Unidos",
+        "estreno": 2002,
+        "duracion": 81,
+				"productora": "Twentieth Century Fox",
+				"actores": ["Steve Oedekerk", "Fei Lung", "Leo Lee"]
     },
 
-    {
-        "_id": "fR4Nc14",
-        "numeroEstudiante": "10",
-        "nombre": "Beatrice",
-        "apellido": "Dugast",
-        "edad": "22",
-        "instrumento": "Vocales",
-        "gustoMusical": "Pop"
+		{
+        "nombrePelicula": "Pollitos en fuga",
+        "nombreDirector": "Peter Lord Nick Park",
+        "genero": "Animada",
+        "pais": "Estados Unidos",
+        "estreno": 2000,
+        "duracion": 84,
+				"productora": "DreamWorks",
+				"actores": ["Mel Gibson", "Julia Sawalha", "Phil Daniels"]
     },
 
-    {
-        "numeroEstudiante": "9",
-        "nombre": "Nicolle",
-        "apellido": "Cordón",
-        "edad": "20",
-        "instrumento": "Piano",
-        "gustoMusical": "Clásica",
-        "hijo": {
-                "nombre": "Diego",
-                "apellido": "Villalobos",
-                "instrumento": "Piano"
-                }
-    }
- ]
-)
-
-// 10. Obtener todos los documentos de la colección estudiantes.
-db.estudiantes.find()
-
-// 11. Obtener el primer elemento de la colección.
-db.estudiantes.findOne()
-
-// 12. Obtener documentos usando condiciones/restricciones.
-db.estudiantes.find(
-	{
-	  "numeroEstudiante": "6"
-	}
-)
-
-// 13. Obtener los documentos usando comparaciones.
-db.estudiantes.find(
-	{
-	  "edad" : {$ne : "22"} //$gt, $lt, %gte, $lte, $ne
-	}
-)
-
-// 14. Obteniendo documentos usando AND.
-db.estudiantes.find(
-	{
-	  "instrumento": "Piano", "edad": "21"
-	}
-)
-
-// 15. Obteniendo documentos usando OR.
-db.estudiantes.find(
-	{
-	  $or : [{"instrumento": "Piano"}, {"edad": "21"}] //or es '$or'
-	}
-)
-
-// 16. Obteniendo documentos usando AND y OR.
-db.estudiantes.find(
-	{
-	  "nombre": "Giovanni", $or : [{"edad": "20"}, {"edad": "21"}]
-	}
-)
-
-// 17. Actualizando documentos de la colección estudiantes: añadiendo un instrumento.
-db.estudiantes.findOne({"nombre": "Cristhian"})
-
-db.estudiantes.update(
-	{ "nombre" : "Cristhian"},
-	{$set : {"instrumento": "Beatbox"}}
-)
-
-
-// 18. Actualizando varios documentos que tenga una misma condición: cambiando apellido.
-
-db.estudiantes.find()
-
-db.estudiantes.update(
-	{"edad" : "21"},
-	{$set : {"apellido": "Musi"}}
-)
-
-db.estudiantes.update(
-	{"edad" : "21"},
-	{$set : {"apellido": "Musi"}},
-	{multi: true}
-)
-
-// 19. Actualizar todo los datos de un documento de una vez.
-db.estudiante.save(
-	{
-	    "_id" : ObjectId("59f0a95cf0c4baed276acffe"), //si el _id no existe, se crea el nuevo documento
-    	"numeroEstudiante" : "1",
-    	"nombre" : "Sofía",
-    	"apellido" : "Cortés",
-    	"edad" : "21",
-    	"instrumento" : "Piano",
-    	"gustoMusical" : "Indie-Pop"
-	}
-)
-
-
-// 14. Borrando todos los  documentos de la colección
-db.estudiantes.remove()
-
-// 15. Borrando todos los documentos que cumplan una condición dada.
-db.estudiantes.remove(
-	{
-	  "_id" : ObjectId("59f0a978f0c4baed276ad003")
-	}
-)
-db.estudiantes.find()
-
-
-// 16. Limitar el número de documentos a borrar que cumplan una condición dada.
-db.estudiantes.remove(
-	{
-	   "edad": "21"
-	}, 1
-)
-
-db.estudiantes.find()
-
-
-// 17. Obtener todos los documentos de la colección.
-db.estudiantes.find()
-
-// 18. "Projection": Obtener datos específicos de uno o varios documentos: nombre e instrumento.
-db.estudiantes.find(
-	{},
-	{"nombre" : 1, "instrumento" : 1}
-)
-
-// 19. Otener datos específicos: nombre e instrumento, sin el _id de cada documento.
-db.estudiantes.find(
-	{},
-	{"nombre": 1, "instrumento":1, "_id": 0}
-)
-
-// 20. Obtener datos específicos con condiciones dadas.
-db.estudiantes.find(
-	{"numeroEstudiante": "8"},
-	{"nombre": 1, "instrumento":1, "_id": 0}
-)
-
-// 21. Limitar la cantidad de resultados que se obtiene.
-db.estudiantes.find(
-	{},
-	{"nombre": 1, "numeroEstudiante": 1, "_id": 0}
-).limit(2)
-
-
-// 22. Saltar los de resultados que se obtienen apartir de uno o unos cuantos.
-db.estudiantes.find(
-	{},
-	{"nombre": 1, "numeroEstudiante": 1, "_id": 0}
-).skip(2)
-
-//s 23. Saltar y limitar los de resultados que se obtienen.
-db.estudiantes.find(
-	{},
-	{"nombre": 1, "numeroEstudiante": 1, "_id": 0}
-).skip(2).limit(3)
-
-// 24. Ordenar los datos de manera ascendente.
-db.estudiantes.find(
-	{},
-	{"nombre": 1, "edad": 1, "_id": 0}
-).sort({"edad":1})
-
-// 25. Ordenando los datos de manera descendente.
-db.estudiantes.find(
-	{},
-	{"nombre": 1, "edad": 1, "_id": 0}
-).sort({"edad":-1})
-
-/*
-26. "Indexes and Indexing"
-
-for(i=0; i<1000000; i++){
-  db.estudiante.insert({"numeroEstudiante":i});
-}
-
-db.estudiantes.find({"numeroEstudiante: 1346"})
-*/
-
-
-// 27. De una busqueda, sumar la cantidad de edadaes que hay.
-db.estudiantes.aggregate(
-	[
-	{$group: {_id : "$edad", Cantidad: {$sum: 1}}}
+		{
+        "nombrePelicula": "Shrek",
+        "nombreDirector": "Andrew Adamson Vicky Jenson",
+        "genero": "Animada",
+        "pais": "Estados Unidos",
+        "estreno": 2001,
+        "duracion": 90,
+				"productora": "DreamWorks",
+				"actores": ["Mike Myers", "Eddie Murphy", "Cameron Diaz"]
+    },
 	]
 )
 
-//-------------------------------------------------------------------//
+// Insertando Productoras //
+db.productoras.insert(
+ [
+    {
+      "nombreProductora": "New Line Cinema",
+      "fundacion": 1967,
+      "paginaWeb": "//www.newline.com",
+    },
+
+		{
+			"nombreProductora": "Lucasfilm",
+			"fundacion": 1971,
+			"paginaWeb": "www.lucasfilm.com",
+    },
+
+		{
+			"nombreProductora": "Miramax",
+			"fundacion": 1979,
+			"paginaWeb": "www.miramax.com/",
+    },
+
+		{
+			"nombreProductora": "Twentieth Century Fox",
+			"fundacion": 1935,
+			"paginaWeb": "www.foxmovies.com"
+    },
+
+		{
+			"nombreProductora": "Universal Pictures",
+			"fundacion": 1912,
+			"paginaWeb": "www.universalpictures.com"
+    },
+
+		{
+			"nombreProductora": "DreamWorks",
+			"fundacion": 1994,
+			"paginaWeb": "www.dreamworksanimation.com/"
+    },
+	]
+)
+
+
+//--------------------------------------------------------//
+//--------------------------CRUD--------------------------//
+//--------------------------------------------------------//
+
+//---Busquedas---//
+
+// Consultar todos los resultados //
+db.peliculas.find().pretty()
+db.productoras.find().pretty()
+
+// Consultar toda la información de una película por su nombre //
+db.peliculas.find(
+  {
+    "nombrePelicula": "Shrek"
+  }
+).pretty()
+
+// Consultar toda la información de todas las pelícuals de una franquicia //
+db.peliculas.find(
+  {
+    "franquicia": "Star Wars"
+  }
+).pretty()
+
+// Consultar la información de una película estrenada en un rango de años //
+db.peliculas.find(
+  {
+    "estreno" : {$gt: "2005", $lt: "2010"}
+  }
+).pretty()
+
+// Consultar nombre, género, estreno de las peliculas producidas por una //
+// por una productar en particular //
+db.peliculas.find(
+	{"productora": "Twentieth Century Fox"},
+	{"nombrePelicula": 1, "genero": 1, "estreno":1, "_id": 0}
+).pretty()
+
+// Consultar la cantidad de peliculas //
+db.peliculas.count()
+
+// Consultar la película con menor duración //
+db.peliculas.find(
+	{},
+	{"nombrePelicula": 1, "duracion": 1, "_id": 0}
+).sort({"duracion":-1}).limit(1).pretty()
+
+// Consultar la película con mayor duración //
+db.peliculas.find(
+	{},
+	{"nombrePelicula": 1, "duracion": 1, "_id": 0}
+).sort({"duracion":1}).limit(1).pretty()
+
+// Consultar la duración promedio de las peliculas //

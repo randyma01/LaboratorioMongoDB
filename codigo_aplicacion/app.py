@@ -4,7 +4,7 @@
 Área Académica de Administración de Tecnología de Información
 
 Curso:
-    Bases de Datos Avanzados
+    Bases de Datos Avanzados - TI4601
 
 Tarea:
     Laboratorio MongoDB

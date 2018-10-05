@@ -4,7 +4,7 @@
 Área Académica de Administración de Tecnología de Información
 
 Curso:
-    Bases de Datos Avanzados
+    Bases de Datos Avanzados - TI4601
 
 Tarea:
     Laboratorio MongoDB
@@ -35,15 +35,25 @@ Nota:
 # Librería para la conexión entre MongoDB y Python3 #
 import pymongo
 
+# Librería para mostra los resultados de manera bonita #
+from pprint import pprint
+
 
 #-------------------------------------------------------------------#
 #----------------------Variables y Funciones------------------------#
 #-------------------------------------------------------------------#
 
 # conexión a la base de datos #
-#cliente = pymongo.MongoClient()
+cliente = pymongo.MongoClient()
 
-# #base de datos movieDB #
+# Base de datos: MovieDB #
+db = cliente.escuelaMusica
+
+def mostrarTodos():
+    estu = db.estudiantes.find()
+    for document in estu:
+        pprint(document)
+
 
 
 #-----Consultas-----#
