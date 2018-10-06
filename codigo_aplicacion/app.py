@@ -37,10 +37,13 @@ import tkinter
 from tkinter import *
 from tkinter import messagebox
 
+# Librería para utilizar los recursos del OS #
+import os
+
 # Librería de la Conexión y control de la Parte de MongoDB #
 # (este archivo corresponde a la otra parte del laboratrio #
 # y se encuentre en este mismo folder )                    #
-#from connection import *
+from connection import *
 
 #-------------------------------------------------------------------#
 #----------------------Funciones Auxiliares-------------------------#
@@ -66,7 +69,7 @@ def ventanaConsultas():
     ventanaPrincipal.withdraw()
     ventanaConsultas = Toplevel()
     ventanaConsultas.title("Consultas a MovieDB")
-    ventanaConsultas.minsize(800,800)
+    ventanaConsultas.minsize(800,550)
     ventanaConsultas.resizable(width=NO,height=NO)
 
     # Imagen de Fondo Ventana Consultas #
@@ -92,9 +95,8 @@ def ventanaConsultas():
 
     def ejecutarConsultaNombre():
         temp = str(entradaNombre.get())
-        print (temp)
-        #messagebox.showinfo("Mensaje leido en el entry",str(entradaNombre.get()))
-        #print ("Mensaje leido:"+entradaNombre.get())
+        res = consultarPeliculaNombre(temp)
+        messagebox.showinfo("Información de la Película",res)
         
     botonConsultaNombre = Button(ventanaConsultas, command=ejecutarConsultaNombre, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaNombre.place(x=570,y=100)
@@ -105,7 +107,13 @@ def ventanaConsultas():
     infoPeliculaFranquicia.place(x=25,y=150)
     entradaFranquicia = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
     entradaFranquicia.place(x=440,y=150)
-    botonConsultaFranquicia = Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+
+    def ejecutarConsultaFranquicia():
+        temp = str(entradaFranquicia.get())
+        res = consultarPeliculaFranquicia(temp)
+        messagebox.showinfo("Información de la Película",res)
+        
+    botonConsultaFranquicia = Button(ventanaConsultas, command=ejecutarConsultaFranquicia, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaFranquicia.place(x=570,y=150)
 
     #--Consultar Pelicula por Años--#
@@ -115,7 +123,14 @@ def ventanaConsultas():
     entradaAhnos1.place(x=370,y=200)
     entradaAhnos2 = Entry(ventanaConsultas, width=5, bg = "#FFFFFF")
     entradaAhnos2.place(x=440,y=200)
-    botonConsultaAhno= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+
+    def ejecutarConsultaAhnos():
+        temp1 = entradaAhnos1.get()
+        temp2 = entradaAhnos2.get()
+        res = consultarPeliculaAhnos(temp1, temp2)
+        messagebox.showinfo("Información de la Película",res)
+        
+    botonConsultaAhno= Button(ventanaConsultas, command=ejecutarConsultaAhnos, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaAhno.place(x=570,y=200)
 
     #--Consultar Pelicula por productora--#

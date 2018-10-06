@@ -38,10 +38,6 @@ import pymongo
 # Librería para mostra los resultados de manera bonita #
 from pprint import pprint
 
-# Librería para utilizar los recursos del OS #
-import os
-
-
 #-------------------------------------------------------------------#
 #----------------------Variables y Funciones------------------------#
 #-------------------------------------------------------------------#
@@ -60,17 +56,20 @@ db = cliente.movieDB
 
 # Consultar toda la Información de una Película por su Nombre #
 def consultarPeliculaNombre(nombre):
-    pipeline = ({"nombrePelicula": nombre},)
+    pipeline = ({"nombrePelicula": nombre})
     cursor = db.peliculas.find(pipeline)
     infoPelicula = list(cursor)
     pprint(infoPelicula)
+    return infoPelicula
     
 # Consultar toda la Información de todas las Pelícuals de una Franquicia #
 def consultarPeliculaFranquicia(nombre):
-    pipeline = ({"franquicia": nombre},)
+    pipeline = ({"franquicia": nombre})
     cursor = db.peliculas.find(pipeline)
     infoPelicula = list(cursor)
     pprint(infoPelicula)
+    return infoPelicula
+
 
 # Consultar la información de una película estrenada en un rango de años #
 def consultarPeliculaAhnos(anUno,anDos):
@@ -80,6 +79,7 @@ def consultarPeliculaAhnos(anUno,anDos):
     for document in infoPelicula:
         pprint(document)
         print("\n")
+    return infoPelicula
 
 # Consultar nombre, género, estreno de las peliculas producidas por una #
 # por una productar en particular #
@@ -89,18 +89,24 @@ def consultarPeliculaProductora(productora):
     for document in infoPelicula:
         pprint(document)
         print("\n")
+    return infoPelicula
+
 
 # Consultar la Película con Menor Duración #
 def consultarDuracionMinima():
     duracionMinima = db.peliculas.find({}, {"nombrePelicula": 1, "duracion": 1, "_id": 0}).sort("duracion",1).limit(1)
     for document in duracionMinima:
         pprint(document)
+    return infoPelicula
+
 
 # Consultar la Película con Mayor Duración #
 def consultarDuracionMayor():
     duracionMayor = db.peliculas.find({}, {"nombrePelicula": 1, "duracion": 1, "_id": 0}).sort("duracion",-1).limit(1)
     for document in duracionMayor:
         pprint(document)
+    return infoPelicula
+
         
 # Consultar la Duración Promedio de las Películas #
 def consultarDuracionPromedio():
