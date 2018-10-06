@@ -121,6 +121,7 @@ def consultarDuracionPromedio():
 
 #-----Insertar------#
 
+# Insertar una nueva Película a la Base de Datos #
 def insertarPelicula(nombre,director,genero,franquicia,pais,estreno,duracion,productora,listaActores):
     db.peliculas.insert_one({
         "nombrePelicula": nombre,
@@ -133,6 +134,16 @@ def insertarPelicula(nombre,director,genero,franquicia,pais,estreno,duracion,pro
 	"productora": productora,
 	"actores": listaActores
     })
+#-------------------#
 
-#-----Borrar------#
+#-----Eiminar------#
 
+# Eliminar todas las pelícualas #
+def eliminarTodo():
+    db.peliculas.drop()
+
+# Borrar una Película #
+def eliminarPelicula(nombre):
+    pipeline = ({"nombrePelicula": nombre})
+    db.peliculas.delete_one(pipeline)
+#-------------------#

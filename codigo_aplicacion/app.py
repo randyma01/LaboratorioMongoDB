@@ -43,7 +43,7 @@ import os
 # Librería de la Conexión y control de la Parte de MongoDB #
 # (este archivo corresponde a la otra parte del laboratrio #
 # y se encuentre en este mismo folder )                    #
-#from connection import *
+from connection import *
 
 #-------------------------------------------------------------------#
 #----------------------Funciones Auxiliares-------------------------#
@@ -87,6 +87,7 @@ def ventanaConsultas():
     entradaNombre = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
     entradaNombre.place(x=400,y=100)
 
+    # Función que Recopila los Datos e Invoca la Función que Ejecuta la Consulta#
     def ejecutarConsultaNombre():
         temp = str(entradaNombre.get())
         res = consultarPeliculaNombre(temp)
@@ -102,6 +103,7 @@ def ventanaConsultas():
     entradaFranquicia = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
     entradaFranquicia.place(x=440,y=150)
 
+    # Función que Recopila los Datos e Invoca la Función que Ejecuta la Consulta#
     def ejecutarConsultaFranquicia():
         temp = str(entradaFranquicia.get())
         res = consultarPeliculaFranquicia(temp)
@@ -118,6 +120,7 @@ def ventanaConsultas():
     entradaAhnos2 = Entry(ventanaConsultas, width=5, bg = "#FFFFFF")
     entradaAhnos2.place(x=440,y=200)
 
+    # Función que Recopila los Datos e Invoca la Función que Ejecuta la Consulta#
     def ejecutarConsultaAhnos():
         temp1 = entradaAhnos1.get()
         temp2 = entradaAhnos2.get()
@@ -135,6 +138,7 @@ def ventanaConsultas():
     entradaProductora = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
     entradaProductora.place(x=440,y=250)
 
+    # Función que Recopila los Datos e Invoca la Función que Ejecuta la Consulta#
     def ejecutarConsultaProductora():
         temp = str(entradaProductora.get())
         res = consultarPeliculaProductora(temp)
@@ -147,6 +151,7 @@ def ventanaConsultas():
     infoPeliculaDuracionMinima = Label(ventanaConsultas,text="-> Consultar información de la duración minima ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
     infoPeliculaDuracionMinima.place(x=25,y=300)
 
+    # Función que Invoca la Función que Ejecuta la Consulta#
     def ejecutarConsultaDuracionMin():
         res = consultarDuracionMinima()
         messagebox.showinfo("Información de la Película",res)
@@ -158,6 +163,7 @@ def ventanaConsultas():
     infoPeliculaDuracionMaxima = Label(ventanaConsultas,text="-> Consultar información de la duración maxima ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
     infoPeliculaDuracionMaxima.place(x=25,y=350)
 
+    # Función que Invoca la Función que Ejecuta la Consulta#
     def ejecutarConsultaDuracionMax():
         res = consultarDuracionMaxima()
         messagebox.showinfo("Información de la Película",res)
@@ -169,6 +175,7 @@ def ventanaConsultas():
     infoPeliculaDuracionPromedio = Label(ventanaConsultas,text="-> Consultar información de la duración promedio ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
     infoPeliculaDuracionPromedio.place(x=25,y=400)
 
+    # Función que Invoca la Función que Ejecuta la Consulta#
     def ejecutarConsultaDuracionProm():
         res = consultarDuracionPromedio()
         messagebox.showinfo("Información de la Película",res)
@@ -183,7 +190,7 @@ def ventanaConsultas():
         ventanaPrincipal.deiconify()
 
     # Boton para regresar a la Ventana Principal #
-    botonReresoVentanaPrincipal = Button(ventanaConsultas, command=regresarVentanaPrincipal, text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
+    botonReresoVentanaPrincipal = Button(ventanaConsultas, command=regresarVentanaPrincipal, text="REGRESAR", bg="#FFFFFF", fg="GREEN", font=("Courier",28))
     botonReresoVentanaPrincipal.place(x=355,y=450)
 #------------------------------#
 
@@ -254,7 +261,7 @@ def ventanaInsertar():
     entradaActorTres = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
     entradaActorTres.place(x=590,y=500)
 
-    
+    # Función que Recopila los Datos y los manda al a Función que los Inserta #
     def ejecutarInsercionPelicula():
         nombre = str(entradaNombre.get())
         director = str(entradaDirector.get())
@@ -267,13 +274,12 @@ def ventanaInsertar():
         actorUno = str(entradaActorUno.get())
         actorDos = str(entradaActorDos.get())
         actorTres = str(entradaActorTres.get())
-
         listaActores = []
         listaActores.append(actorUno)
         listaActores.append(actorDos)
         listaActores.append(actorTres)
-
-        print(nombre,director,franquicia,pais,genero,estreno,duracion,productora,listaActores)
+        print(nombre,director,genero,franquicia,pais,estreno,duracion,productora,listaActores)
+        insertarPelicula(nombre,director,genero,franquicia,pais,estreno,duracion,productora,listaActores)
 
     botonInsertarPelicula= Button(ventanaInsertar, command=ejecutarInsercionPelicula, text="Guardar", bg="#FFFFFF", fg="#000000", font=("Courier",28))
     botonInsertarPelicula.place(x=600,y=300)
@@ -285,18 +291,51 @@ def ventanaInsertar():
         ventanaPrincipal.deiconify()
 
     # Boton para regresar a la Ventana Principal #
-    botonReresoVentanaPrincipal = Button(ventanaInsertar, command=regresarVentanaPrincipal, text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
+    botonReresoVentanaPrincipal = Button(ventanaInsertar, command=regresarVentanaPrincipal, text="REGRESAR", bg="#FFFFFF", fg="GREEN", font=("Courier",28))
     botonReresoVentanaPrincipal.place(x=355,y=600)
 
 #--------------------------------#
 
+#-----Ventana de Eliminaciones-----#
 def ventanaEliminar():
     ventanaPrincipal.withdraw()
     ventanaEliminar = Toplevel()
     ventanaEliminar.title("Eliminar Películas a MovieDB")
-    ventanaEliminar.minsize(800,660)
+    ventanaEliminar.minsize(900,300)
     ventanaEliminar.resizable(width=NO,height=NO)
 
+    # Canva Inserciones #
+    contenedorEliminar = Canvas(ventanaEliminar, width= 1000, height = 800, bg = "#000000")
+    contenedorEliminar.place(x=0,y=0)
+
+    # Titulo Insertar #
+    tituloEliminar = Label(ventanaEliminar,text="¡Elimine una película colección!", fg="#FFFFFF", bg ="#000000", font=("Courier",40))
+    tituloEliminar.place(x=50,y=25)
+
+    #--Eliminar Pelicula por Nombre--#
+    eliminadoNombre = Label(ventanaEliminar,text="-> Elimine película por nombre: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    eliminadoNombre.place(x=25,y=100)
+    entradaNombre = Entry(ventanaEliminar, width=10, bg = "#FFFFFF")
+    entradaNombre.place(x=400,y=100)
+
+    # Función que Elimina una Película #
+    def ejecutarEliminadoPelicula():
+        temp = str(entradaNombre.get())
+        eliminarPelicula(temp)
+        
+    botonEliminarPelicula = Button(ventanaEliminar, command=ejecutarEliminadoPelicula, text="Eliminar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonEliminarPelicula.place(x=570,y=100)
+
+    #--Eliminar Todas las Películas--#
+    eliminadoTotal = Label(ventanaEliminar,text="-> Elimine todas las películas: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    eliminadoTotal.place(x=25,y=150)
+
+    # Función que Elimina todas las Películas #
+    def ejecutarEliminadoTotal():
+        eliminarTodo()
+    
+    botonEliminarPelicula = Button(ventanaEliminar, command=ejecutarEliminadoTotal, text="Eliminar", bg="#FFFFFF", fg="#FE0000", font=("Courier",18))
+    botonEliminarPelicula.place(x=400,y=150)
     #----------------------------#
 
     # Funcion para regresar a Ventana Principal #
@@ -305,8 +344,47 @@ def ventanaEliminar():
         ventanaPrincipal.deiconify()
 
     # Boton para regresar a la Ventana Principal #
-    botonReresoVentanaPrincipal = Button(ventanaEliminar, command=regresarVentanaPrincipal, text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
-    botonReresoVentanaPrincipal.place(x=355,y=600)
+    botonReresoVentanaPrincipal = Button(ventanaEliminar, command=regresarVentanaPrincipal, text="REGRESAR", bg="#FFFFFF", fg="GREEN", font=("Courier",28))
+    botonReresoVentanaPrincipal.place(x=355,y=250)
+#----------------------------------#
+
+
+#-----Ventana de Actualizaciones-----#
+def ventanaActualizar():
+    ventanaPrincipal.withdraw()
+    ventanaActualizar = Toplevel()
+    ventanaActualizar.title("Actualizar una Películas de MovieDB")
+    ventanaActualizar.minsize(850,200)
+    ventanaActualizar.resizable(width=NO,height=NO)
+
+    # Canva Inserciones #
+    contenedorActualizar= Canvas(ventanaActualizar, width= 1000, height = 800, bg = "#000000")
+    contenedorActualizar.place(x=0,y=0)
+
+    # Titulo Insertar #
+    tituloEliminar = Label(ventanaActualizar,text="¡Elimine una película colección!", fg="#FFFFFF", bg ="#000000", font=("Courier",40))
+    tituloEliminar.place(x=50,y=25)
+
+    #--Eliminar Pelicula por Nombre--#
+    eliminadoNombre = Label(ventanaActualizar,text="-> Actualice el nombre de una película: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    eliminadoNombre.place(x=25,y=100)
+    
+    entradaNombreOriginal = Entry(ventanaActualizar, width=10, bg = "#FFFFFF")
+    entradaNombreOriginal.place(x=460,y=100)
+
+    entradaNombreNuevo = Entry(ventanaActualizar, width=10, bg = "#FFFFFF")
+    entradaNombreNuevo.place(x=580,y=100)
+     #----------------------------#
+
+    # Funcion para regresar a Ventana Principal #
+    def regresarVentanaPrincipal():
+        ventanaActualizar.destroy()
+        ventanaPrincipal.deiconify()
+
+    # Boton para regresar a la Ventana Principal #
+    botonReresoVentanaPrincipal = Button(ventanaActualizar, command=regresarVentanaPrincipal, text="REGRESAR", bg="#FFFFFF", fg="GREEN", font=("Courier",28))
+    botonReresoVentanaPrincipal.place(x=355,y=150)
+#------------------------------------#
 
 #-----Ventana Principal-----#
 ventanaPrincipal = Tk()
@@ -336,9 +414,13 @@ botonConsultas.place(x=315,y=225)
 botonInsertar = Button(ventanaPrincipal, command=ventanaInsertar, text="Insertar", bg = "#000000", fg = "#000000", font=("Courier",30))
 botonInsertar.place(x=325,y=275)
 
+# Boton para ir a Ventana de Actualizar #
+botonActualizar = Button(ventanaPrincipal, command=ventanaActualizar, text="Actualizar", bg = "#000000", fg = "#000000", font=("Courier",30))
+botonActualizar.place(x=305,y=325)
+
 # Boton para ir a Ventana de Eliminar #
 botonInsertar = Button(ventanaPrincipal, command=ventanaEliminar, text="Eliminar", bg = "#000000", fg = "#000000", font=("Courier",30))
-botonInsertar.place(x=310,y=325)
+botonInsertar.place(x=325,y=375)
 
 # Boton para terminar del Programar #
 botonSalida = Button(ventanaPrincipal, command=salida(), text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
