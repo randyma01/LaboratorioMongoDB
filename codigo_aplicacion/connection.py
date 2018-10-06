@@ -130,7 +130,7 @@ def insertarPelicula(nombre,director,genero,franquicia,pais,estreno,duracion,pro
         "franquicia": franquicia,
         "pais": pais,
         "estreno": estreno,
-        "duracion": genero,
+        "duracion": duracion,
 	"productora": productora,
 	"actores": listaActores
     })
