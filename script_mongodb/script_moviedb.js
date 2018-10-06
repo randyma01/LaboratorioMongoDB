@@ -46,8 +46,12 @@ db.createCollection('productoras')
 show collections
 
 //--------------------------------------------------------//
-//---------------Llenado de las Colecciones---------------//
+//--------------------------CRUD--------------------------//
 //--------------------------------------------------------//
+
+//-----------------//
+//---Inserciones---//
+//-----------------//
 
 // Insertando Películas //
 db.peliculas.insert(
@@ -198,12 +202,9 @@ db.productoras.insert(
 	]
 )
 
-
-//--------------------------------------------------------//
-//--------------------------CRUD--------------------------//
-//--------------------------------------------------------//
-
+//---------------//
 //---Busquedas---//
+//---------------//
 
 // Consultar todos los resultados //
 db.peliculas.find().pretty()
@@ -216,7 +217,7 @@ db.peliculas.find(
   }
 ).pretty()
 
-// Consultar toda la información de todas las pelícuals de una franquicia //
+// Consultar toda la Información de todas las Películas de una Franquicia //
 db.peliculas.find(
   {
     "franquicia": "Star Wars"
@@ -253,3 +254,49 @@ db.peliculas.find(
 ).sort({"duracion":1}).limit(1).pretty()
 
 // Consultar la duración promedio de las peliculas //
+db.peliculas.aggregate(
+  [
+    {$group: {_id: null, PromedioDuracion: {$avg: "$duracion"} }}
+  ]
+).pretty()
+
+
+
+//---------------------//
+//---Actualizaciones---//
+//---------------------//
+
+// Actualizando datos de la una Película //
+db.peliculas.update(
+	{ "nombrePelicula" : "-------"},
+	{$set : {"duracion": "------"}}
+)
+
+
+// 19. Actualizar todo los datos de un documento de una vez.
+db.estudiante.save(
+	{
+    "nombrePelicula": "Shrek",
+    "nombreDirector": "Andrew Adamson Vicky Jenson",
+    "genero": "Animada",
+    "pais": "Estados Unidos",
+    "estreno": 2001,
+    "duracion": 90,
+    "productora": "DreamWorks",
+    "actores": ["Mike Myers", "Eddie Murphy", "Cameron Diaz"]
+	}
+)
+
+//-------------------//
+//---Eliminaciones---//
+//-------------------//
+
+// Elimnando todos las peliculas de la coleccion //
+db.estudiantes.remove()
+
+// Elimnando todas las peliculas bajo una cierta condicion //
+db.estudiantes.remove(
+	{
+	  "_id" : ObjectId("5bb7ad66071fe7fd72fe88dc")
+	}
+)

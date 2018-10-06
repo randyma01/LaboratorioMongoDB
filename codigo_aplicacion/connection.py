@@ -38,22 +38,75 @@ import pymongo
 # Librería para mostra los resultados de manera bonita #
 from pprint import pprint
 
+# Librería para utilizar los recursos del OS #
+import os
+
 
 #-------------------------------------------------------------------#
 #----------------------Variables y Funciones------------------------#
 #-------------------------------------------------------------------#
 
-# conexión a la base de datos #
+# Conexión a la Base de Datos #
 cliente = pymongo.MongoClient()
 
-# Base de datos: MovieDB #
-db = cliente.escuelaMusica
+# Base de Datos: MovieDB #
+db = cliente.movieDB
 
-def mostrarTodos():
-    estu = db.estudiantes.find()
-    for document in estu:
-        pprint(document)
-
-
+#-------------------------------------------------------------------#
+#---------------------------------CRUD------------------------------#
+#-------------------------------------------------------------------#
 
 #-----Consultas-----#
+
+# Consultar toda la Información de una Película por su Nombre #
+def consultarPeliculaNombre(nombre):
+    pipeline = ({"nombrePelicula": nombre},)
+    cursor = db.peliculas.find(pipeline)
+    infoPelicula = list(cursor)
+    pprint(infoPelicula)
+    
+# Consultar toda la Información de todas las Pelícuals de una Franquicia #
+def consultarPeliculaFranquicia(nombre):
+    pipeline = ({"franquicia": nombre},)
+    cursor = db.peliculas.find(pipeline)
+    infoPelicula = list(cursor)
+    pprint(infoPelicula)
+
+# Consultar la información de una película estrenada en un rango de años #
+def consultarPeliculaAhnos(anUno,anDos):
+    pipeline = ({"estreno" : {"$gt": anUno, "$lt": anDos}})
+    cursor = db.peliculas.find(pipeline)
+    infoPelicula = list(cursor)
+    for document in infoPelicula:
+        pprint(document)
+        print("\n")
+
+# Consultar nombre, género, estreno de las peliculas producidas por una #
+# por una productar en particular #
+def consultarPeliculaProductora(productora):
+    cursor = db.peliculas.find({"productora": productora}, {"nombrePelicula": 1, "genero": 1, "estreno":1, "_id": 0})
+    infoPelicula = list(cursor)
+    for document in infoPelicula:
+        pprint(document)
+        print("\n")
+
+# Consultar la Película con Menor Duración #
+def consultarDuracionMinima():
+    duracionMinima = db.peliculas.find({}, {"nombrePelicula": 1, "duracion": 1, "_id": 0}).sort("duracion",1).limit(1)
+    for document in duracionMinima:
+        pprint(document)
+
+# Consultar la Película con Mayor Duración #
+def consultarDuracionMayor():
+    duracionMayor = db.peliculas.find({}, {"nombrePelicula": 1, "duracion": 1, "_id": 0}).sort("duracion",-1).limit(1)
+    for document in duracionMayor:
+        pprint(document)
+        
+# Consultar la Duración Promedio de las Películas #
+def consultarDuracionPromedio():
+    pipeline = [{"$group": {"_id": "null", "PromedioDuracion": {"$avg": "$duracion"}}}]
+    cursor = db.peliculas.aggregate(pipeline)
+    duracionPromedio = list(cursor)
+    for document in duracionPromedio:
+        pprint(document)
+

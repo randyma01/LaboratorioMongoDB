@@ -37,13 +37,10 @@ import tkinter
 from tkinter import *
 from tkinter import messagebox
 
-# Librería para utilidades del Sistema Operativo
-import os
-
 # Librería de la Conexión y control de la Parte de MongoDB #
 # (este archivo corresponde a la otra parte del laboratrio #
 # y se encuentre en este mismo folder )                    #
-from connection import *
+#from connection import *
 
 #-------------------------------------------------------------------#
 #----------------------Funciones Auxiliares-------------------------#
@@ -69,7 +66,7 @@ def ventanaConsultas():
     ventanaPrincipal.withdraw()
     ventanaConsultas = Toplevel()
     ventanaConsultas.title("Consultas a MovieDB")
-    ventanaConsultas.minsize(800,500)
+    ventanaConsultas.minsize(800,800)
     ventanaConsultas.resizable(width=NO,height=NO)
 
     # Imagen de Fondo Ventana Consultas #
@@ -78,7 +75,7 @@ def ventanaConsultas():
     imagenVentanaConsultas.place (x=0, y=0)
 
     # Canva Consultas #
-    contenedorConsultas = Canvas(ventanaConsultas , width= 1000, height = 600, bg = "#000000")
+    contenedorConsultas = Canvas(ventanaConsultas , width= 1000, height = 800, bg = "#000000")
     contenedorConsultas.place(x=0,y=0)
 
     # Titulo Consultas #
@@ -111,7 +108,7 @@ def ventanaConsultas():
     botonConsultaFranquicia = Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaFranquicia.place(x=570,y=150)
 
-    #--Consultar Pelicula por Franquicia--#
+    #--Consultar Pelicula por Años--#
     infoPeliculaAhnos = Label(ventanaConsultas,text="-> Consultar película por año: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
     infoPeliculaAhnos.place(x=25,y=200)
     entradaAhnos1 = Entry(ventanaConsultas, width=5, bg = "#FFFFFF")
@@ -121,19 +118,31 @@ def ventanaConsultas():
     botonConsultaAhno= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaAhno.place(x=570,y=200)
 
-    #--Consultar Pelicula por Compañía--#
-    infoPeliculaCompania = Label(ventanaConsultas,text="-> Consultar película por compañía: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
-    infoPeliculaCompania.place(x=25,y=250)
-    entradaCompania = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
-    entradaCompania.place(x=430,y=250)
-    botonConsultaCompania= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
-    botonConsultaCompania.place(x=570,y=250)
+    #--Consultar Pelicula por productora--#
+    infoPeliculaProductora = Label(ventanaConsultas,text="-> Consultar película por productora: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    infoPeliculaProductora.place(x=25,y=250)
+    entradaProductora = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
+    entradaProductora.place(x=440,y=250)
+    botonConsultaProductora= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaProductora.place(x=570,y=250)
 
-    #--Consultar Duracion Peliculas--#
-    infoPeliculaDuracion = Label(ventanaConsultas,text="-> Consultar información de la duración ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
-    infoPeliculaDuracion.place(x=25,y=300)
-    botonConsultaDuracion= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
-    botonConsultaDuracion.place(x=570,y=300)
+    #--Consultar Duracion Minima--#
+    infoPeliculaDuracionMinima = Label(ventanaConsultas,text="-> Consultar información de la duración minima ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    infoPeliculaDuracionMinima.place(x=25,y=300)
+    botonConsultaDuracionMinima= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaDuracionMinima.place(x=570,y=300)
+
+    #--Consultar Duracion Maxima--#
+    infoPeliculaDuracionMaxima = Label(ventanaConsultas,text="-> Consultar información de la duración maxima ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    infoPeliculaDuracionMaxima.place(x=25,y=350)
+    botonConsultaDuracionMaxima= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaDuracionMaxima.place(x=570,y=350)
+
+    #--Consultar Duracion Promedio--#
+    infoPeliculaDuracionPromedio = Label(ventanaConsultas,text="-> Consultar información de la duración promedio ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    infoPeliculaDuracionPromedio.place(x=25,y=400)
+    botonConsultaDuracionPromedio= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+    botonConsultaDuracionPromedio.place(x=570,y=400)
 
 
     #----------------------------#
@@ -146,7 +155,7 @@ def ventanaConsultas():
 
     # Boton para regresar a la Ventana Principal #
     botonReresoVentanaPrincipal = Button(ventanaConsultas, command=regresarVentanaPrincipal, text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
-    botonReresoVentanaPrincipal.place(x=355,y=400)
+    botonReresoVentanaPrincipal.place(x=355,y=450)
 
 
 #-----Ventana Principal-----#
