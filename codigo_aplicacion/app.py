@@ -43,7 +43,7 @@ import os
 # Librería de la Conexión y control de la Parte de MongoDB #
 # (este archivo corresponde a la otra parte del laboratrio #
 # y se encuentre en este mismo folder )                    #
-from connection import *
+#from connection import *
 
 #-------------------------------------------------------------------#
 #----------------------Funciones Auxiliares-------------------------#
@@ -63,19 +63,13 @@ def salida():
 #--------------------------Parte Grafica----------------------------#
 #-------------------------------------------------------------------#
 
-
 #-----Ventana de Consultas-----#
 def ventanaConsultas():
     ventanaPrincipal.withdraw()
     ventanaConsultas = Toplevel()
-    ventanaConsultas.title("Consultas a MovieDB")
+    ventanaConsultas.title("Consulta Películas a MovieDB")
     ventanaConsultas.minsize(800,550)
     ventanaConsultas.resizable(width=NO,height=NO)
-
-    # Imagen de Fondo Ventana Consultas #
-    imagenConsultas = cargarImagen("sala_cine.gif")
-    imagenVentanaConsultas=Label(ventanaConsultas, image=imagenConsultas, bg = "#000000")
-    imagenVentanaConsultas.place (x=0, y=0)
 
     # Canva Consultas #
     contenedorConsultas = Canvas(ventanaConsultas , width= 1000, height = 800, bg = "#000000")
@@ -127,7 +121,9 @@ def ventanaConsultas():
     def ejecutarConsultaAhnos():
         temp1 = entradaAhnos1.get()
         temp2 = entradaAhnos2.get()
+        print(temp1,temp2)
         res = consultarPeliculaAhnos(temp1, temp2)
+        print(res)
         messagebox.showinfo("Información de la Película",res)
         
     botonConsultaAhno= Button(ventanaConsultas, command=ejecutarConsultaAhnos, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
@@ -138,30 +134,48 @@ def ventanaConsultas():
     infoPeliculaProductora.place(x=25,y=250)
     entradaProductora = Entry(ventanaConsultas, width=10, bg = "#FFFFFF")
     entradaProductora.place(x=440,y=250)
-    botonConsultaProductora= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+
+    def ejecutarConsultaProductora():
+        temp = str(entradaProductora.get())
+        res = consultarPeliculaProductora(temp)
+        messagebox.showinfo("Información de la Película",res)
+
+    botonConsultaProductora= Button(ventanaConsultas, command=ejecutarConsultaProductora, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaProductora.place(x=570,y=250)
 
     #--Consultar Duracion Minima--#
     infoPeliculaDuracionMinima = Label(ventanaConsultas,text="-> Consultar información de la duración minima ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
     infoPeliculaDuracionMinima.place(x=25,y=300)
-    botonConsultaDuracionMinima= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+
+    def ejecutarConsultaDuracionMin():
+        res = consultarDuracionMinima()
+        messagebox.showinfo("Información de la Película",res)
+        
+    botonConsultaDuracionMinima= Button(ventanaConsultas, command=ejecutarConsultaDuracionMin, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaDuracionMinima.place(x=570,y=300)
 
     #--Consultar Duracion Maxima--#
     infoPeliculaDuracionMaxima = Label(ventanaConsultas,text="-> Consultar información de la duración maxima ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
     infoPeliculaDuracionMaxima.place(x=25,y=350)
-    botonConsultaDuracionMaxima= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+
+    def ejecutarConsultaDuracionMax():
+        res = consultarDuracionMaxima()
+        messagebox.showinfo("Información de la Película",res)
+        
+    botonConsultaDuracionMaxima= Button(ventanaConsultas, command=ejecutarConsultaDuracionMax, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaDuracionMaxima.place(x=570,y=350)
 
     #--Consultar Duracion Promedio--#
     infoPeliculaDuracionPromedio = Label(ventanaConsultas,text="-> Consultar información de la duración promedio ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
     infoPeliculaDuracionPromedio.place(x=25,y=400)
-    botonConsultaDuracionPromedio= Button(ventanaConsultas, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
+
+    def ejecutarConsultaDuracionProm():
+        res = consultarDuracionPromedio()
+        messagebox.showinfo("Información de la Película",res)
+        
+    botonConsultaDuracionPromedio= Button(ventanaConsultas, command=ejecutarConsultaDuracionProm, text="Consultar", bg="#FFFFFF", fg="#000000", font=("Courier",18))
     botonConsultaDuracionPromedio.place(x=570,y=400)
-
-
     #----------------------------#
-
 
     # Funcion para regresar a Ventana Principal 
     def regresarVentanaPrincipal():
@@ -171,7 +185,128 @@ def ventanaConsultas():
     # Boton para regresar a la Ventana Principal #
     botonReresoVentanaPrincipal = Button(ventanaConsultas, command=regresarVentanaPrincipal, text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
     botonReresoVentanaPrincipal.place(x=355,y=450)
+#------------------------------#
 
+
+#-----Ventana de Inserciones-----#
+def ventanaInsertar():
+    ventanaPrincipal.withdraw()
+    ventanaInsertar = Toplevel()
+    ventanaInsertar.title("Insertar Películas a MovieDB")
+    ventanaInsertar.minsize(800,660)
+    ventanaInsertar.resizable(width=NO,height=NO)
+
+    # Canva Inserciones #
+    contenedorConsultas = Canvas(ventanaInsertar, width= 1000, height = 800, bg = "#000000")
+    contenedorConsultas.place(x=0,y=0)
+
+    # Titulo Insertar #
+    tituloConsultas = Label(ventanaInsertar,text="¡Inserte una nueva película!", fg="#FFFFFF", bg ="#000000", font=("Courier",40))
+    tituloConsultas.place(x=50,y=25)
+
+    # Indicaciones para Insertar los Datos de las Películas
+    nombrePelicula= Label(ventanaInsertar,text="-> Nombre de la película: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    nombrePelicula.place(x=25,y=100)
+    entradaNombre = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaNombre.place(x=300,y=100)
+
+    nombreDirector= Label(ventanaInsertar,text="-> Nombre del director: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    nombreDirector.place(x=25,y=150)
+    entradaDirector = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaDirector.place(x=300,y=150)
+
+    franquicia= Label(ventanaInsertar,text="-> Franquicia (si aplica): ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    franquicia.place(x=25,y=200)
+    entradaFranquicia = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaFranquicia.place(x=330,y=200)
+
+    pais= Label(ventanaInsertar,text="-> País: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    pais.place(x=25,y=250)
+    entradaPais = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaPais.place(x=130,y=250)
+
+    genero= Label(ventanaInsertar,text="->Género de la película: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    genero.place(x=25,y=300)
+    entradaGenero = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaGenero.place(x=300,y=300)
+
+    estreno= Label(ventanaInsertar,text="-> Año de estreno: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    estreno.place(x=25,y=350)
+    entradaEstreno = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaEstreno.place(x=250,y=350)
+    
+    duracion= Label(ventanaInsertar,text="-> Duración (min): ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    duracion.place(x=25,y=400)
+    entradaDuracion = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaDuracion.place(x=250,y=400)
+
+    productora= Label(ventanaInsertar,text="-> La principal productora: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    productora.place(x=25,y=450)
+    entradaProductora = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaProductora.place(x=330,y=450)
+
+    actores= Label(ventanaInsertar,text="-> Tres actores principales: ", fg="#FFFFFF", bg ="#000000", font=("Courier",18))
+    actores.place(x=25,y=500)
+    entradaActorUno = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaActorUno.place(x=350,y=500)
+    entradaActorDos= Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaActorDos.place(x=470,y=500)
+    entradaActorTres = Entry(ventanaInsertar, width=10, bg = "#FFFFFF")
+    entradaActorTres.place(x=590,y=500)
+
+    
+    def ejecutarInsercionPelicula():
+        nombre = str(entradaNombre.get())
+        director = str(entradaDirector.get())
+        franquicia = str(entradaFranquicia.get())
+        pais = str(entradaPais.get())
+        genero = str(entradaGenero.get())
+        estreno = entradaEstreno.get()
+        duracion = entradaDuracion.get()
+        productora = str(entradaProductora.get())
+        actorUno = str(entradaActorUno.get())
+        actorDos = str(entradaActorDos.get())
+        actorTres = str(entradaActorTres.get())
+
+        listaActores = []
+        listaActores.append(actorUno)
+        listaActores.append(actorDos)
+        listaActores.append(actorTres)
+
+        print(nombre,director,franquicia,pais,genero,estreno,duracion,productora,listaActores)
+
+    botonInsertarPelicula= Button(ventanaInsertar, command=ejecutarInsercionPelicula, text="Guardar", bg="#FFFFFF", fg="#000000", font=("Courier",28))
+    botonInsertarPelicula.place(x=600,y=300)
+    #----------------------------#
+
+    # Funcion para regresar a Ventana Principal #
+    def regresarVentanaPrincipal():
+        ventanaInsertar.destroy()
+        ventanaPrincipal.deiconify()
+
+    # Boton para regresar a la Ventana Principal #
+    botonReresoVentanaPrincipal = Button(ventanaInsertar, command=regresarVentanaPrincipal, text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
+    botonReresoVentanaPrincipal.place(x=355,y=600)
+
+#--------------------------------#
+
+def ventanaEliminar():
+    ventanaPrincipal.withdraw()
+    ventanaEliminar = Toplevel()
+    ventanaEliminar.title("Eliminar Películas a MovieDB")
+    ventanaEliminar.minsize(800,660)
+    ventanaEliminar.resizable(width=NO,height=NO)
+
+    #----------------------------#
+
+    # Funcion para regresar a Ventana Principal #
+    def regresarVentanaPrincipal():
+        ventanaEliminar.destroy()
+        ventanaPrincipal.deiconify()
+
+    # Boton para regresar a la Ventana Principal #
+    botonReresoVentanaPrincipal = Button(ventanaEliminar, command=regresarVentanaPrincipal, text="SALIDA", bg="#FFFFFF", fg="#FE0000", font=("Courier",28))
+    botonReresoVentanaPrincipal.place(x=355,y=600)
 
 #-----Ventana Principal-----#
 ventanaPrincipal = Tk()
@@ -198,11 +333,11 @@ botonConsultas = Button(ventanaPrincipal, command=ventanaConsultas, text="Consul
 botonConsultas.place(x=315,y=225)
 
 # Boton para ir a Ventana de Insertar #
-botonInsertar = Button(ventanaPrincipal, command=ventanaConsultas, text="Insertar", bg = "#000000", fg = "#000000", font=("Courier",30))
+botonInsertar = Button(ventanaPrincipal, command=ventanaInsertar, text="Insertar", bg = "#000000", fg = "#000000", font=("Courier",30))
 botonInsertar.place(x=325,y=275)
 
-# Boton para ir a Ventana de Actualizar #
-botonInsertar = Button(ventanaPrincipal, command=ventanaConsultas, text="Actualizar", bg = "#000000", fg = "#000000", font=("Courier",30))
+# Boton para ir a Ventana de Eliminar #
+botonInsertar = Button(ventanaPrincipal, command=ventanaEliminar, text="Eliminar", bg = "#000000", fg = "#000000", font=("Courier",30))
 botonInsertar.place(x=310,y=325)
 
 # Boton para terminar del Programar #

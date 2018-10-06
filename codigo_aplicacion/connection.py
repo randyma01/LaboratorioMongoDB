@@ -73,12 +73,12 @@ def consultarPeliculaFranquicia(nombre):
 
 # Consultar la información de una película estrenada en un rango de años #
 def consultarPeliculaAhnos(anUno,anDos):
+    print(anUno,anDos)
     pipeline = ({"estreno" : {"$gt": anUno, "$lt": anDos}})
     cursor = db.peliculas.find(pipeline)
     infoPelicula = list(cursor)
     for document in infoPelicula:
         pprint(document)
-        print("\n")
     return infoPelicula
 
 # Consultar nombre, género, estreno de las peliculas producidas por una #
@@ -88,31 +88,51 @@ def consultarPeliculaProductora(productora):
     infoPelicula = list(cursor)
     for document in infoPelicula:
         pprint(document)
-        print("\n")
     return infoPelicula
 
 
 # Consultar la Película con Menor Duración #
 def consultarDuracionMinima():
-    duracionMinima = db.peliculas.find({}, {"nombrePelicula": 1, "duracion": 1, "_id": 0}).sort("duracion",1).limit(1)
+    cursor = db.peliculas.find({}, {"nombrePelicula": 1, "duracion": 1, "_id": 0}).sort("duracion",1).limit(1)
+    duracionMinima = list(cursor)
     for document in duracionMinima:
         pprint(document)
-    return infoPelicula
+    return duracionMinima
 
 
 # Consultar la Película con Mayor Duración #
-def consultarDuracionMayor():
-    duracionMayor = db.peliculas.find({}, {"nombrePelicula": 1, "duracion": 1, "_id": 0}).sort("duracion",-1).limit(1)
-    for document in duracionMayor:
+def consultarDuracionMaxima():
+    cursor = db.peliculas.find({}, {"nombrePelicula": 1, "duracion": 1, "_id": 0}).sort("duracion",-1).limit(1)
+    duracionMaxima = list(cursor)
+    for document in duracionMaxima:
         pprint(document)
-    return infoPelicula
-
+    return duracionMaxima
         
 # Consultar la Duración Promedio de las Películas #
 def consultarDuracionPromedio():
-    pipeline = [{"$group": {"_id": "null", "PromedioDuracion": {"$avg": "$duracion"}}}]
+    pipeline = [{"$group": {"_id": 0, "PromedioDuracion": {"$avg": "$duracion"}}}]
     cursor = db.peliculas.aggregate(pipeline)
     duracionPromedio = list(cursor)
     for document in duracionPromedio:
         pprint(document)
+    return duracionPromedio
+
+#-------------------#
+
+#-----Insertar------#
+
+def insertarPelicula(nombre,director,genero,franquicia,pais,estreno,duracion,productora,listaActores):
+    db.peliculas.insert_one({
+        "nombrePelicula": nombre,
+        "nombreDirector": director,
+        "genero": genero,
+        "franquicia": franquicia,
+        "pais": pais,
+        "estreno": estreno,
+        "duracion": genero,
+	"productora": productora,
+	"actores": listaActores
+    })
+
+#-----Borrar------#
 
