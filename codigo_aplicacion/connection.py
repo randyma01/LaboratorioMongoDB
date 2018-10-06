@@ -147,3 +147,12 @@ def eliminarPelicula(nombre):
     pipeline = ({"nombrePelicula": nombre})
     db.peliculas.delete_one(pipeline)
 #-------------------#
+
+#-----Actualizar------#
+def actualizarPelicula(original,nuevo):
+    condition = {"nombrePelicula" : original }
+    values = {"$set" : {"nombrePelicula": nuevo}}
+    db.estudiantes.update_one(condition,values,upsert=False)
+
+#---------------------#
+

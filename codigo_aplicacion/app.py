@@ -374,6 +374,15 @@ def ventanaActualizar():
 
     entradaNombreNuevo = Entry(ventanaActualizar, width=10, bg = "#FFFFFF")
     entradaNombreNuevo.place(x=580,y=100)
+
+     # Función que Actualiza el Nombre de una Películas #
+    def ejecutarActualizacionNombre():
+        original = str(entradaNombreOriginal.get())
+        nuevo = str(entradaNombreNuevo.get())
+        actualizarPelicula(original,nuevo)
+
+    botonActualizarPelicula = Button(ventanaActualizar, command=ejecutarActualizacionNombre, text="Acualizar", bg="#FFFFFF", fg="BLUE", font=("Courier",22))
+    botonActualizarPelicula.place(x=690,y=100)
      #----------------------------#
 
     # Funcion para regresar a Ventana Principal #
